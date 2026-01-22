@@ -8,15 +8,17 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; text-align: center; padding: 20px; }
         .wallet-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: inline-block; width: 350px; position: relative; }
         .logo { width: 120px; margin-bottom: 15px; }
-        .status-badge { background: #e8f5e9; color: #2e7d32; padding: 5px 15px; border-radius: 20px; font-size: 12px; margin-bottom: 20px; display: inline-block; font-weight: bold; }
+        .status-badge { background: #e8f5e9; color: #2e7d32; padding: 5px 15px; border-radius: 20px; font-size: 11px; margin-bottom: 20px; display: inline-block; font-weight: bold; }
         .address { font-size: 11px; color: #7f8c8d; background: #f8f9fa; padding: 12px; border-radius: 8px; word-break: break-all; margin: 15px 0; border: 1px solid #eee; }
-        .balance-label { font-size: 14px; color: #666; margin-top: 20px; }
         .balance-amount { font-size: 28px; color: #1a237e; font-weight: bold; margin: 5px 0; }
-        .price-estimate { font-size: 14px; color: #e67e22; font-weight: 500; }
-        .market-info { border-top: 1px solid #eee; margin-top: 25px; padding-top: 20px; display: flex; justify-content: space-around; font-size: 13px; color: #444; }
-        .btn { background: #27ae60; color: white; border: none; padding: 12px; border-radius: 10px; cursor: pointer; margin-top: 20px; width: 100%; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background: #219150; }
-        .footer-link { font-size: 11px; color: #3498db; text-decoration: none; display: block; margin-top: 15px; }
+        .price-estimate { font-size: 13px; color: #e67e22; font-weight: 500; margin-bottom: 20px; }
+        .market-info { border-top: 1px solid #eee; margin-top: 20px; padding-top: 15px; display: flex; justify-content: space-around; font-size: 12px; color: #444; }
+        .history-section { text-align: left; margin-top: 25px; border-top: 1px solid #eee; padding-top: 15px; }
+        .history-title { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 10px; }
+        .tx-item { display: flex; justify-content: space-between; font-size: 12px; padding: 8px 0; border-bottom: 1px dashed #eee; }
+        .tx-type { color: #27ae60; font-weight: bold; }
+        .tx-date { color: #999; font-size: 10px; }
+        .btn { background: #27ae60; color: white; border: none; padding: 12px; border-radius: 10px; cursor: pointer; margin-top: 20px; width: 100%; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -25,23 +27,34 @@
     <div class="status-badge">● Jaringan BSC Aktif</div>
     <br>
     <img src="logo_kdh.png" alt="Logo KDH" class="logo">
-    <h2 style="margin: 0; color: #333;">Dompet Digital KDH</h2>
-    <p style="font-size: 13px; color: #777;">Sistem Integrasi Ekonomi Kaltara</p>
+    <h3 style="margin: 0; color: #333;">Dompet Digital KDH</h3>
     
     <div class="address">0xC34bbC9cE28Bc74D116a23961083724b5675eEB6</div>
     
-    <div class="balance-label">Saldo Aset Anda:</div>
+    <div style="font-size: 13px; color: #666;">Total Saldo:</div>
     <div class="balance-amount">10.000 KDH</div>
-    <div class="price-estimate">Estimasi: $0.00005682 USD</div>
+    <div class="price-estimate">≈ $0.00005682 USD</div>
 
     <div class="market-info">
         <div><b>Holders</b><br>71+</div>
         <div><b>Liquidity</b><br>$0.88</div>
     </div>
 
-    <button class="btn" onclick="alert('Fitur Transaksi Sedang Sinkronisasi dengan Jaringan BSC')">Kirim KDH</button>
+    <div class="history-section">
+        <div class="history-title">Riwayat Transaksi Terakhir</div>
+        <div class="tx-item">
+            <div><span class="tx-type">TERIMA</span><br><span class="tx-date">22 Jan 2026 - 13:45</span></div>
+            <div style="text-align: right;">+5.000 KDH<br><span style="color: #999; font-size: 10px;">Sukses</span></div>
+        </div>
+        <div class="tx-item">
+            <div><span class="tx-type">TERIMA</span><br><span class="tx-date">22 Jan 2026 - 10:20</span></div>
+            <div style="text-align: right;">+5.000 KDH<br><span style="color: #999; font-size: 10px;">Sukses</span></div>
+        </div>
+    </div>
+
+    <button class="btn" onclick="alert('Fitur Transaksi Sedang Sinkronisasi...')">Kirim Aset</button>
     
-    <a href="https://bscscan.com/token/0x792c6734143d51f5e97d2045c900383816e332b9" target="_blank" class="footer-link">
+    <a href="https://bscscan.com/token/0x792c6734143d51f5e97d2045c900383816e332b9" target="_blank" style="font-size: 11px; color: #3498db; text-decoration: none; display: block; margin-top: 15px;">
         Verifikasi di BscScan Explorer →
     </a>
 </div>
