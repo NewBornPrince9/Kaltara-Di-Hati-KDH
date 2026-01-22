@@ -2,70 +2,49 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Wallet Kaltara Di Hati (KDH)</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; text-align: center; padding: 50px; }
-        .wallet-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: inline-block; width: 400px; }
-        .logo { width: 100px; margin-bottom: 20px; }
-        .balance { font-size: 24px; color: #2c3e50; font-weight: bold; margin: 20px 0; }
-        .address { font-size: 12px; color: #7f8c8d; background: #eee; padding: 10px; border-radius: 5px; word-break: break-all; }
-        .btn { background: #27ae60; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 20px; width: 100%; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; text-align: center; padding: 20px; }
+        .wallet-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: inline-block; width: 350px; position: relative; }
+        .logo { width: 120px; margin-bottom: 15px; }
+        .status-badge { background: #e8f5e9; color: #2e7d32; padding: 5px 15px; border-radius: 20px; font-size: 12px; margin-bottom: 20px; display: inline-block; font-weight: bold; }
+        .address { font-size: 11px; color: #7f8c8d; background: #f8f9fa; padding: 12px; border-radius: 8px; word-break: break-all; margin: 15px 0; border: 1px solid #eee; }
+        .balance-label { font-size: 14px; color: #666; margin-top: 20px; }
+        .balance-amount { font-size: 28px; color: #1a237e; font-weight: bold; margin: 5px 0; }
+        .price-estimate { font-size: 14px; color: #e67e22; font-weight: 500; }
+        .market-info { border-top: 1px solid #eee; margin-top: 25px; padding-top: 20px; display: flex; justify-content: space-around; font-size: 13px; color: #444; }
+        .btn { background: #27ae60; color: white; border: none; padding: 12px; border-radius: 10px; cursor: pointer; margin-top: 20px; width: 100%; font-weight: bold; transition: 0.3s; }
+        .btn:hover { background: #219150; }
+        .footer-link { font-size: 11px; color: #3498db; text-decoration: none; display: block; margin-top: 15px; }
     </style>
 </head>
 <body>
 
 <div class="wallet-card">
+    <div class="status-badge">● Jaringan BSC Aktif</div>
+    <br>
     <img src="logo_kdh.png" alt="Logo KDH" class="logo">
-    <h2>Dompet Digital KDH</h2>
-    <p>Selamat Datang di Ekosistem Digital Kaltara</p>
+    <h2 style="margin: 0; color: #333;">Dompet Digital KDH</h2>
+    <p style="font-size: 13px; color: #777;">Sistem Integrasi Ekonomi Kaltara</p>
     
-    <div class="address" id="walletAddr">0xC34bbC9cE28Bc74D116a23961083724b5675eEB6</div>
+    <div class="address">0xC34bbC9cE28Bc74D116a23961083724b5675eEB6</div>
     
-    <div class="balance">
-        Saldo Anda:<br>
-        <span id="kdhBalance">10.000 KDH</span>
+    <div class="balance-label">Saldo Aset Anda:</div>
+    <div class="balance-amount">10.000 KDH</div>
+    <div class="price-estimate">Estimasi: $0.00005682 USD</div>
+
+    <div class="market-info">
+        <div><b>Holders</b><br>71+</div>
+        <div><b>Liquidity</b><br>$0.88</div>
     </div>
 
-    <div style="font-size: 14px; color: #e67e22;">
-        Estimasi Nilai: <span id="price">Memuat Harga...</span>
-    </div>
-
-    <button class="btn" onclick="alert('Fitur Kirim Segera Hadir!')">Kirim KDH</button>
+    <button class="btn" onclick="alert('Fitur Transaksi Sedang Sinkronisasi dengan Jaringan BSC')">Kirim KDH</button>
+    
+    <a href="https://bscscan.com/token/0x792c6734143d51f5e97d2045c900383816e332b9" target="_blank" class="footer-link">
+        Verifikasi di BscScan Explorer →
+    </a>
 </div>
-
-<script>
-    // Menampilkan estimasi harga dari data GeckoTerminal Anda
-    document.getElementById('price').innerText = "$0.00005682 USD"; // Berdasarkan data image_d5601d.jpg
-</script>
-    .status-badge {
-    background: #e8f5e9;
-    color: #2e7d32;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 12px;
-    margin-bottom: 15px;
-    display: inline-block;
-}
-.market-info {
-    border-top: 1px solid #eee;
-    margin-top: 20px;
-    padding-top: 15px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-}
-
-<div class="status-badge">● Jaringan BSC Aktif</div>
-
-<div class="market-info">
-    <div><b>Holders:</b> 71+</div>
-    <div><b>Liquidity:</b> $0.88</div>
-</div>
-
-<a href="https://bscscan.com/token/0x792c6734143d51f5e97d2045c900383816e332b9" 
-   target="_blank" style="font-size: 11px; color: #3498db; text-decoration: none; display: block; margin-top: 10px;">
-   Lihat Transaksi di BscScan →
-</a>
 
 </body>
 </html>
