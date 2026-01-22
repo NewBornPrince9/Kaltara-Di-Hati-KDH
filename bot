@@ -1,0 +1,42 @@
+from web3 import Web3
+import time
+import datetime
+
+# --- KONFIGURASI JARINGAN ---
+# Menggunakan beberapa RPC untuk menghindari "Koneksi Gagal"
+rpc_url = "https://bsc-dataseed.binance.org/" 
+w3 = Web3(Web3.HTTPProvider(rpc_url))
+
+# --- DATA KONTRAK KDH ---
+# Alamat resmi sesuai BscScan
+kdh_address = w3.to_checksum_address("0x792c6734143d51f5e97d2045c900383816e332b9")
+router_address = w3.to_checksum_address("0x10ED43C718714eb63d5aA57B78B54704E256024E")
+
+# PENTING: Gunakan placeholder untuk keamanan di GitHub
+PRIVATE_KEY = "MASUKKAN_PRIVATE_KEY_ANDA_DISINI" 
+
+# --- PENGATURAN OPERASIONAL ---
+JAM_KERJA_MULAI = 8  # 08:00
+JAM_KERJA_SELESAI = 16 # 16:00
+# Sekali transaksi setiap 30 menit agar hemat biaya gas
+INTERVAL_MENIT = 30 
+
+def jalankan_market_maker():
+    try:
+        # Logika untuk memicu grafik hijau di GeckoTerminal
+        print(f"[{datetime.datetime.now()}] Memicu aktivitas pasar KDH...")
+        # Transaksi mikro untuk efisiensi budget
+        # (Tambahkan logika swapExactETHForTokens di sini)
+    except Exception as e:
+        print(f"Peringatan: {e}")
+
+if __name__ == "__main__":
+    print("--- SISTEM MANAJEMEN EKOSISTEM KDH AKTIF ---")
+    while True:
+        sekarang = datetime.datetime.now()
+        if JAM_KERJA_MULAI <= sekarang.hour < JAM_KERJA_SELESAI:
+            jalankan_market_maker()
+            time.sleep(INTERVAL_MENIT * 60)
+        else:
+            print("Mode Tidur: Menghemat BNB untuk jam kerja besok.")
+            time.sleep(3600)
