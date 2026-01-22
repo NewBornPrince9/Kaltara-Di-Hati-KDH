@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Wallet Kaltara Di Hati (KDH)</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; text-align: center; padding: 50px; }
+        .wallet-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: inline-block; width: 400px; }
+        .logo { width: 100px; margin-bottom: 20px; }
+        .balance { font-size: 24px; color: #2c3e50; font-weight: bold; margin: 20px 0; }
+        .address { font-size: 12px; color: #7f8c8d; background: #eee; padding: 10px; border-radius: 5px; word-break: break-all; }
+        .btn { background: #27ae60; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 20px; width: 100%; }
+    </style>
+</head>
+<body>
+
+<div class="wallet-card">
+    <img src="logo_kdh.png" alt="Logo KDH" class="logo">
+    <h2>Dompet Digital KDH</h2>
+    <p>Selamat Datang di Ekosistem Digital Kaltara</p>
+    
+    <div class="address" id="walletAddr">0xC34bbC9cE28Bc74D116a23961083724b5675eEB6</div>
+    
+    <div class="balance">
+        Saldo Anda:<br>
+        <span id="kdhBalance">10.000 KDH</span>
+    </div>
+
+    <div style="font-size: 14px; color: #e67e22;">
+        Estimasi Nilai: <span id="price">Memuat Harga...</span>
+    </div>
+
+    <button class="btn" onclick="alert('Fitur Kirim Segera Hadir!')">Kirim KDH</button>
+</div>
+
+<script>
+    // Menampilkan estimasi harga dari data GeckoTerminal Anda
+    document.getElementById('price').innerText = "$0.00005682 USD"; // Berdasarkan data image_d5601d.jpg
+</script>
+
+</body>
+</html>
