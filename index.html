@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <link rel="manifest" href="manifest.json">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Wallet Kaltara Di Hati (KDH)</title>
+    <title>KDH Wallet - Kaltara Di Hati</title>
+    <link rel="manifest" href="manifest.json">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; text-align: center; padding: 20px; }
-        .wallet-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: inline-block; width: 350px; position: relative; }
-        .logo { width: 120px; margin-bottom: 15px; }
-        .status-badge { background: #e8f5e9; color: #2e7d32; padding: 5px 15px; border-radius: 20px; font-size: 11px; margin-bottom: 20px; display: inline-block; font-weight: bold; }
-        .address { font-size: 11px; color: #7f8c8d; background: #f8f9fa; padding: 12px; border-radius: 8px; word-break: break-all; margin: 15px 0; border: 1px solid #eee; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; text-align: center; padding: 20px; }
+        .wallet-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: inline-block; width: 350px; }
+        .logo { width: 100px; margin-bottom: 15px; }
+        .status-badge { background: #e8f5e9; color: #2e7d32; padding: 5px 15px; border-radius: 20px; font-size: 11px; font-weight: bold; margin-bottom: 15px; display: inline-block; }
+        .address { font-size: 11px; color: #7f8c8d; background: #f8f9fa; padding: 10px; border-radius: 8px; word-break: break-all; margin: 15px 0; border: 1px solid #eee; }
         .balance-amount { font-size: 28px; color: #1a237e; font-weight: bold; margin: 5px 0; }
         .price-estimate { font-size: 13px; color: #e67e22; font-weight: 500; margin-bottom: 20px; }
         .market-info { border-top: 1px solid #eee; margin-top: 20px; padding-top: 15px; display: flex; justify-content: space-around; font-size: 12px; color: #444; }
-        .history-section { text-align: left; margin-top: 25px; border-top: 1px solid #eee; padding-top: 15px; }
-        .history-title { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 10px; }
-        .tx-item { display: flex; justify-content: space-between; font-size: 12px; padding: 8px 0; border-bottom: 1px dashed #eee; }
-        .tx-type { color: #27ae60; font-weight: bold; }
-        .tx-date { color: #999; font-size: 10px; }
-        .btn { background: #27ae60; color: white; border: none; padding: 12px; border-radius: 10px; cursor: pointer; margin-top: 20px; width: 100%; font-weight: bold; }
+        .btn-group { display: flex; gap: 10px; margin-top: 20px; }
+        .btn { flex: 1; padding: 12px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; color: white; transition: 0.3s; }
+        .input-box { width: 90%; padding: 10px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 10px; font-size: 13px; }
+        #qr-container img { margin-top: 10px; border: 5px solid #fff; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
@@ -32,33 +30,60 @@
     
     <div class="address">0xC34bbC9cE28Bc74D116a23961083724b5675eEB6</div>
     
-    <div style="font-size: 13px; color: #666;">Total Saldo:</div>
+    <div style="font-size: 13px; color: #666;">Saldo Kaltara Di Hati:</div>
     <div class="balance-amount">10.000 KDH</div>
     <div class="price-estimate">≈ $0.00005682 USD</div>
 
     <div class="market-info">
         <div><b>Holders</b><br>88+</div>
-        <div><b>Liquidity</b><br>$100,000.88</div>
+        <div><b>Liquidity</b><br>$0.88</div>
     </div>
 
-    <div class="history-section">
-        <div class="history-title">Riwayat Transaksi Terakhir</div>
-        <div class="tx-item">
-            <div><span class="tx-type">TERIMA</span><br><span class="tx-date">22 Jan 2026 - 13:45</span></div>
-            <div style="text-align: right;">+5.000 KDH<br><span style="color: #999; font-size: 10px;">Sukses</span></div>
-        </div>
-        <div class="tx-item">
-            <div><span class="tx-type">TERIMA</span><br><span class="tx-date">22 Jan 2026 - 10:20</span></div>
-            <div style="text-align: right;">+5.000 KDH<br><span style="color: #999; font-size: 10px;">Sukses</span></div>
-        </div>
+    <div class="btn-group">
+        <button class="btn" onclick="tampilKirim()" style="background: #27ae60;">Kirim</button>
+        <button class="btn" onclick="tampilTerima()" style="background: #3498db;">Terima</button>
     </div>
 
-    <button class="btn" onclick="alert('Fitur Transaksi Sedang Sinkronisasi...')">Kirim Aset</button>
-    
-    <a href="https://bscscan.com/token/0x792c6734143d51f5e97d2045c900383816e332b9" target="_blank" style="font-size: 11px; color: #3498db; text-decoration: none; display: block; margin-top: 15px;">
-        Verifikasi di BscScan Explorer →
+    <div id="formKirim" style="display:none; margin-top: 20px; text-align: left;">
+        <label style="font-size: 12px; font-weight: bold;">Tujuan:</label>
+        <input type="text" id="target" class="input-box" placeholder="0x... (Alamat Wallet)">
+        <label style="font-size: 12px; font-weight: bold;">Jumlah:</label>
+        <input type="number" id="jumlah" class="input-box" placeholder="0.00 KDH">
+        <button class="btn" onclick="eksekusiKirim()" style="background: #e67e22; width: 100%;">Konfirmasi Transfer</button>
+    </div>
+
+    <div id="formTerima" style="display:none; margin-top: 20px;">
+        <p style="font-size: 12px; color: #666;">Scan QR Code untuk menerima KDH:</p>
+        <div id="qr-container">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=0xC34bbC9cE28Bc74D116a23961083724b5675eEB6" alt="QR KDH">
+        </div>
+        <p style="font-size: 10px; color: #3498db; margin-top: 10px;">0xC34bbC9cE28Bc74D116a23961083724b5675eEB6</p>
+    </div>
+
+    <a href="https://bscscan.com/token/0x792c6734143d51f5e97d2045c900383816e332b9" target="_blank" style="font-size: 11px; color: #3498db; text-decoration: none; display: block; margin-top: 20px;">
+        Verifikasi Data On-Chain →
     </a>
 </div>
+
+<script>
+    function tampilKirim() {
+        document.getElementById('formKirim').style.display = 'block';
+        document.getElementById('formTerima').style.display = 'none';
+    }
+    function tampilTerima() {
+        document.getElementById('formTerima').style.display = 'block';
+        document.getElementById('formKirim').style.display = 'none';
+    }
+    function eksekusiKirim() {
+        const addr = document.getElementById('target').value;
+        const amt = document.getElementById('jumlah').value;
+        if(addr && amt) {
+            alert("Instruksi Transfer " + amt + " KDH ke " + addr + " sedang diproses di Blockchain. Memerlukan Gas Fee (BNB).");
+        } else {
+            alert("Harap masukkan alamat dan jumlah yang valid.");
+        }
+    }
+</script>
 
 </body>
 </html>
